@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=portfolio_pm@2319!
+      - POSTGRES_USER=portfolio_pm@2319!
+      - POSTGRES_DB=portfolio_pm
+    ports:
+      - "5432:5432"
+
+  mock-members-api:
+    image: wiremock/wiremock:3.6.0
+    container_name: mock-members-api
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./wiremock:/home/wiremock
+    command:
+      - "--verbose"
